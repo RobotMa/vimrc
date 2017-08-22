@@ -34,7 +34,8 @@ snippet -
 		${0}
 snippet let
 	let
-		${1} = ${2}
+		${1} =
+			${2}
 	in
 		${0}
 snippet if
@@ -48,3 +49,5 @@ snippet ty
 snippet tya
 	type alias ${1:Model} =
 		${0}
+snippet test
+	test "${1}" <| \_ -> $0
