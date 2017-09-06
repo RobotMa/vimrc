@@ -142,14 +142,14 @@ snippet ipdb
 snippet iem
 	import IPython
 	IPython.embed()
-# ipython debugger (pdbbb)
-snippet pdbbb
-	import pdbpp
-	pdbpp.set_trace()
 # remote python debugger (rpdb)
 snippet rpdb
 	import rpdb
 	rpdb.set_trace()
+# web python debugger (wdb)
+snippet wdb
+	import wdb
+	wdb.set_trace()
 # ptpython
 snippet ptpython
 	from ptpython.repl import embed
@@ -181,6 +181,11 @@ snippet testcase
 
 		def test_${2:description}(self):
 			${0}
+# test given when then
+snippet tgwt
+	# given: ${1}
+	# when: ${2}
+	# then: ${3}
 snippet fut
 	from __future__ import ${0}
 #getopt
