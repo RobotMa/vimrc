@@ -53,6 +53,7 @@ vim-yankstack https://github.com/maxbrunsfeld/vim-yankstack
 lightline.vim https://github.com/itchyny/lightline.vim
 YouCompleteMe https://github.com/Valloric/YouCompleteMe
 vim-tmux https://github.com/tmux-plugins/vim-tmux.git
+vim-build-tools-wrapper https://github.com/LucHermitte/vim-build-tools-wrapper
 """.strip()
 
 GITHUB_ZIP = '%s/archive/master.zip'
