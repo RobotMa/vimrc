@@ -1,0 +1,11 @@
+{
+  "name" : "build-tools-wrapper",
+  "version" : "dev",
+  "author" : "Luc Hermitte <http://github.com/LucHermitte>",
+  "maintainer" : "Luc Hermitte <http://github.com/LucHermitte>",
+  "repository" : {"type": "git", "url": "git@github.com:LucHermitte/vim-build-tools-wrapper.git"},
+  "dependencies" : {
+      "lh-vim-lib" : {"type" : "git", "url" : "git@github.com:LucHermitte/lh-vim-lib.git"}
+  },
+  "description" : "Projects building plugin"
+}
