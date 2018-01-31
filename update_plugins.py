@@ -52,6 +52,7 @@ vim-pug https://github.com/digitaltoad/vim-pug
 vim-yankstack https://github.com/maxbrunsfeld/vim-yankstack
 lightline.vim https://github.com/itchyny/lightline.vim
 YouCompleteMe https://github.com/Valloric/YouCompleteMe
+vim-tmux https://github.com/tmux-plugins/vim-tmux.git
 """.strip()
 
 GITHUB_ZIP = '%s/archive/master.zip'
