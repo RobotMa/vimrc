@@ -1,3 +1,3 @@
 [submodule "sources_non_forked/YouCompleteMe"]
-	path = sources_non_forked/YouCompleteMe 
-	url = https://github.com/Valloric/YouCompleteMe.git 
+	path = sources_non_forked/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
