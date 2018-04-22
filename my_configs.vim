@@ -11,3 +11,14 @@ nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
 nnoremap <leader>gt :YcmCompleter GetType<CR>
+
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+
+set background=dark
+colorscheme solarized
+let g:solarized_contrast = "high"
+let g:solarized_termcolors = 256
+let g:solarized_visibility = "low"
