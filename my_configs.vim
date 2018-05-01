@@ -1,3 +1,7 @@
+colorscheme solarized
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+let g:solarized_termcolors = 256
 " Python autocomplete through pydiction
 let g:pydiction_location = '~/.vim_runtime/sources_non_forked/pydiction/complete-dict'
 let g:pydiction_menu_height = 7 
@@ -17,8 +21,4 @@ let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_experimental_template_highlight = 1
 
-set background=dark
-colorscheme solarized
-let g:solarized_contrast = "high"
-let g:solarized_termcolors = 256
-let g:solarized_visibility = "low"
+nmap <leader>tag :TagbarToggle<CR>
