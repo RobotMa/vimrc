@@ -47,6 +47,14 @@ snippet cl
 			${5:super($1, self).__init__()}
 			self.$4 = $4
 			${0}
+snippet cla
+	class ${1:class_name}:
+		"""${0:description}"""
+snippet clai
+	class ${1:class_name}:
+		"""${2:description}"""
+		def __init__(self, ${3:args}):
+			${0}
 # New Function
 snippet def
 	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
@@ -63,6 +71,9 @@ snippet adeff
 	async def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
 		${0}
 # New Method
+snippet defi
+	def __init__(self, ${1:args}):
+		${0}
 snippet defm
 	def ${1:mname}(self, ${2:arg}):
 		${0}
@@ -115,21 +126,21 @@ snippet try Try/Except
 		${1:${VISUAL}}
 	except ${2:Exception} as ${3:e}:
 		${0:raise $3}
-snippet try Try/Except/Else
+snippet trye Try/Except/Else
 	try:
 		${1:${VISUAL}}
 	except ${2:Exception} as ${3:e}:
 		${4:raise $3}
 	else:
 		${0}
-snippet try Try/Except/Finally
+snippet tryf Try/Except/Finally
 	try:
 		${1:${VISUAL}}
 	except ${2:Exception} as ${3:e}:
 		${4:raise $3}
 	finally:
 		${0}
-snippet try Try/Except/Else/Finally
+snippet tryef Try/Except/Else/Finally
 	try:
 		${1:${VISUAL}}
 	except ${2:Exception} as ${3:e}:
