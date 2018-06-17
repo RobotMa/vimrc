@@ -31,6 +31,15 @@ set guioptions-=L
 set background=dark
 colorscheme peaksea
 
+" Display row number
+set number
+
+" Highlight current row/column
+set cursorline
+
+" Enable syntax based code folding
+set foldmethod=syntax
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast editing and reloading of vimrc configs

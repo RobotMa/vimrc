@@ -113,7 +113,6 @@ func s:create_cmd(args) abort
   if empty(bin_path)
     return {'err': "gomodifytags does not exist"}
   endif
-  let bin_path = go#util#Shellescape(bin_path)
 
   let l:start = a:args.start
   let l:end = a:args.end

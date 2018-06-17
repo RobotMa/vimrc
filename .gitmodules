@@ -1,0 +1,6 @@
+[submodule "sources_non_forked/YouCompleteMe"]
+	path = sources_non_forked/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "sources_non_forked/color_coded"]
+	path = sources_non_forked/color_coded
+	url = https://github.com/jeaye/color_coded.git

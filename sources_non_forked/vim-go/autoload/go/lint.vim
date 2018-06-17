@@ -169,7 +169,6 @@ function! go#lint#Errcheck(...) abort
     endif
 
     if !empty(errors)
-      echohl Error | echomsg "GoErrCheck found errors" | echohl None
       call go#list#Populate(l:listtype, errors, 'Errcheck')
       call go#list#Window(l:listtype, len(errors))
       if !empty(errors)
@@ -228,7 +227,6 @@ function! s:lint_job(args, autosave)
     let self.exited = 1
     let self.exit_status = a:exitval
 
-  function! s:exit_cb(job, exitval) closure
     let status = {
           \ 'desc': 'last status',
           \ 'type': "gometaliner",

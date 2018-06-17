@@ -32,6 +32,15 @@ map <leader>f :MRU<CR>
 
 
 """"""""""""""""""""""""""""""
+" => Solarized plugin
+""""""""""""""""""""""""""""""
+colorscheme solarized
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+let g:solarized_termcolors = 256
+
+
+""""""""""""""""""""""""""""""
 " => YankStack
 """"""""""""""""""""""""""""""
 let g:yankstack_yank_keys = ['y', 'd']
