@@ -31,10 +31,6 @@ https://github.com/itchyny/lightline.vim
 
 ![lightline.vim - seoul256](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/seoul256.png)
 
-### Dracula
-
-![lightline.vim - Dracula](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/Dracula.png)
-
 ### one
 
 ![lightline.vim - one](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/one.png)
@@ -43,15 +39,15 @@ https://github.com/itchyny/lightline.vim
 
 ![lightline.vim - landscape](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/landscape.png)
 
-landscape is my colorscheme, which is a high-contrast cui-supported colorscheme, available at https://github.com/itchyny/landscape.vim
+landscape is my colorscheme, which is a high-contrast cterm-supported colorscheme, available at https://github.com/itchyny/landscape.vim
 
 ## Why yet another clone of powerline?
 + [vim-powerline](https://github.com/Lokaltog/vim-powerline) is a nice plugin, but deprecated.
-+ [powerline](https://github.com/Lokaltog/powerline) is a nice plugin, but difficult to configure.
-+ [vim-airline](https://github.com/bling/vim-airline) is a nice plugin, but it uses too much functions of other plugins, which should be done by users in `.vimrc`.
++ [powerline](https://github.com/powerline/powerline) is a nice plugin, but difficult to configure.
++ [vim-airline](https://github.com/vim-airline/vim-airline) is a nice plugin, but it uses too much functions of other plugins, which should be done by users in `.vimrc`.
 
 ## Spirit of this plugin
-+ Minimalism. The core script is very small to achive enough functions as a statusline plugin.
++ Minimalism. The core script is very small to achieve enough functions as a statusline plugin.
 + Configurability. You can create your own component and easily add to the statusline and the tabline.
 + Orthogonality. The plugin does not rely on the implementation of other plugins. Such plugin crossing settings should be configured by users.
 
@@ -110,7 +106,7 @@ if !has('gui_running')
 endif
 ```
 
-Your statusline appears to work correctly? If yes, great, thanks for choosing lightline.vim! If no, please file a issue report to the [issue tracker](https://github.com/itchyny/lightline.vim/issues).
+Your statusline appears to work correctly? If yes, great, thanks for choosing lightline.vim! If no, please file an issue report to the [issue tracker](https://github.com/itchyny/lightline.vim/issues).
 
 By the way, `-- INSERT --` is unnecessary anymore because the mode information is displayed in the statusline.
 ![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/13.png)
@@ -247,12 +243,17 @@ What do we learn from this example?
 - Create a function component. The previous `charvaluehex` component has `'statusline'` item configuration and registered in `g:lightline.component`. In the current example, we register the name of the function in `g:lightline.component_function`. It should return the string to be displayed in the statusline.
 - Add the component name `gitbranch` to `g:lightline.active.left` or `g:lightline.active.right`.
 
+- Find out the function which is suitable to use in the statusline.
+- Create a function component. The previous `charvaluehex` component has `'statusline'` item configuration and registered in `g:lightline.component`. In the current example, we register the name of the function in `g:lightline.component_function`. It should return the string to be displayed in the statusline.
+- Add the component name `gitbranch` to `g:lightline.active.left` or `g:lightline.active.right`.
 
 Here we have leaned two kinds of components.
 
 - component: it has a `%`-prefixed item which you can find the meaning at `:h 'statusline'`. All the default components of lightline.vim are components in this style. See the default components at `:h g:lightline.component`.
 - function component: the name of functions are registered. The function is called again and again so be careful not to register a heavy function. See the help with `:h g:lightline.component_function`.
 
+- component: it has a `%`-prefixed item which you can find the meaning at `:h 'statusline'`. All the default components of lightline.vim are components in this style. See the default components at `:h g:lightline.component`.
+- function component: the name of functions are registered. The function is called again and again so be careful not to register a heavy function. See the help with `:h g:lightline.component_function`.
 
 The function component is an important design for the configurability of lightline.vim.
 By providing the configuration interface via functions, you can adjust the statusline information as you wish.
