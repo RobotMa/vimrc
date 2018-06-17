@@ -19,7 +19,6 @@ function! go#term#newmode(bang, cmd, mode) abort
       \ }
 
   " execute go build in the files directory
-  let l:winnr = winnr()
   let cd = exists('*haslocaldir') && haslocaldir() ? 'lcd ' : 'cd '
   let dir = getcwd()
 

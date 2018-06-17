@@ -147,9 +147,6 @@ endfunction
 Plugins themselves can register `User` autocommands on `MultipleCursorsPre` and
 `MultipleCursorsPost` for automatic integration.
 
-Plugins themselves can register `User` autocommands on `MultipleCursorsPre` and
-`MultipleCursorsPost` for automatic integration.
-
 ### Highlight
 The plugin uses the highlight group `multiple_cursors_cursor` and `multiple_cursors_visual` to highlight the virtual cursors and their visual selections respectively. You can customize them by putting something similar like the following in your vimrc:
 

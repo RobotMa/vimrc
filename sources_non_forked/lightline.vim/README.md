@@ -243,17 +243,12 @@ What do we learn from this example?
 - Create a function component. The previous `charvaluehex` component has `'statusline'` item configuration and registered in `g:lightline.component`. In the current example, we register the name of the function in `g:lightline.component_function`. It should return the string to be displayed in the statusline.
 - Add the component name `gitbranch` to `g:lightline.active.left` or `g:lightline.active.right`.
 
-- Find out the function which is suitable to use in the statusline.
-- Create a function component. The previous `charvaluehex` component has `'statusline'` item configuration and registered in `g:lightline.component`. In the current example, we register the name of the function in `g:lightline.component_function`. It should return the string to be displayed in the statusline.
-- Add the component name `gitbranch` to `g:lightline.active.left` or `g:lightline.active.right`.
 
 Here we have leaned two kinds of components.
 
 - component: it has a `%`-prefixed item which you can find the meaning at `:h 'statusline'`. All the default components of lightline.vim are components in this style. See the default components at `:h g:lightline.component`.
 - function component: the name of functions are registered. The function is called again and again so be careful not to register a heavy function. See the help with `:h g:lightline.component_function`.
 
-- component: it has a `%`-prefixed item which you can find the meaning at `:h 'statusline'`. All the default components of lightline.vim are components in this style. See the default components at `:h g:lightline.component`.
-- function component: the name of functions are registered. The function is called again and again so be careful not to register a heavy function. See the help with `:h g:lightline.component_function`.
 
 The function component is an important design for the configurability of lightline.vim.
 By providing the configuration interface via functions, you can adjust the statusline information as you wish.

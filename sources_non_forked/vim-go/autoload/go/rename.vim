@@ -1,6 +1,4 @@
 function! go#rename#Rename(bang, ...) abort
-  call s:default()
-
   let to_identifier = ""
   if a:0 == 0
     let ask = printf("vim-go: rename '%s' to: ", expand("<cword>"))

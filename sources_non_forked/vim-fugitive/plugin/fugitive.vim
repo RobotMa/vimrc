@@ -59,8 +59,8 @@ endfunction
 
 function! FugitiveExtractGitDir(path) abort
   let path = s:shellslash(a:path)
-  if path =~# '^fugitive://.*//'
-    return matchstr(path, '\C^fugitive://\zs.\{-\}\ze//')
+  if path =~# '^fugitive:'
+    return matchstr(path, '\C^fugitive:\%(//\)\=\zs.\{-\}\ze\%(//\|::\|$\)')
   elseif isdirectory(path)
     let path = fnamemodify(path, ':p:s?/$??')
   else
@@ -117,9 +117,6 @@ function! FugitiveDetect(path) abort
     let dir = FugitiveExtractGitDir(a:path)
     if dir !=# ''
       let b:git_dir = dir
-      if empty(fugitive#buffer().path())
-        silent! exe haslocaldir() ? 'lcd .' : 'cd .'
-      endif
     endif
   endif
   if exists('b:git_dir')
@@ -139,6 +136,15 @@ function! FugitiveHead(...) abort
     return ''
   endif
   return fugitive#repo().head(a:0 ? a:1 : 0)
+endfunction
+
+function! FugitiveFilename(...) abort
+  let file = fnamemodify(a:0 ? a:1 : @%, ':p')
+  if file =~? '^fugitive:'
+    return fugitive#Filename(file)
+  else
+    return file
+  endif
 endfunction
 
 augroup fugitive

@@ -34,8 +34,6 @@ function! gitgutter#async#execute(cmd, bufnr, handler) abort
           \   'close_cb': function('s:on_exit_vim', options)
           \ })
   endif
-
-  throw 'unknown os'
 endfunction
 
 

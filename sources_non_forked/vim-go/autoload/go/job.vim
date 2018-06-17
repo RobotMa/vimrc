@@ -130,7 +130,7 @@ function go#job#Spawn(args)
       call go#list#ParseFormat(l:listtype, self.errorformat, out, self.for)
       let errors = go#list#Get(l:listtype)
     finally
-      execute cd . fnameescape(dir)
+      execute cd . fnameescape(self.dir)
     endtry
 
 
