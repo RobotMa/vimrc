@@ -19,3 +19,6 @@
 [submodule "sources_non_forked/YCM-generator"]
 	path = sources_non_forked/YCM-generator
 	url = https://github.com/rdnetto/YCM-Generator.git
+[submodule "sources_non_forked/vip-cpp-enhanced-highlight"]
+	path = sources_non_forked/vip-cpp-enhanced-highlight
+	url = https://github.com/octol/vim-cpp-enhanced-highlight.git
