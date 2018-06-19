@@ -13,3 +13,6 @@
 [submodule "sources_non_forked/vim-fsitch"]
 	path = sources_non_forked/vim-fsitch
 	url = git@github.com:derekwyatt/vim-fswitch.git
+[submodule "sources_non_forked/vim-protodef"]
+	path = sources_non_forked/vim-protodef
+	url = git@github.com:derekwyatt/vim-protodef.git
