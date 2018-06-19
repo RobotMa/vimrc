@@ -10,3 +10,6 @@
 [submodule "sources_non_forked/vim_cpp_enhanced_highlight"]
 	path = sources_non_forked/vim_cpp_enhanced_highlight
 	url = https://github.com/octol/vim-cpp-enhanced-highlight.git
+[submodule "sources_non_forked/vim-fsitch"]
+	path = sources_non_forked/vim-fsitch
+	url = git@github.com:derekwyatt/vim-fswitch.git
