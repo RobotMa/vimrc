@@ -31,3 +31,4 @@ let g:ycm_seed_identifies_with_syntax=1
 let g:ycm_cache_omnifunc=0
 
 inoremap <leader>; <C-x><C-o>
+let g:disable_protodef_sorting=1
