@@ -16,3 +16,6 @@
 [submodule "sources_non_forked/vim-protodef"]
 	path = sources_non_forked/vim-protodef
 	url = git@github.com:derekwyatt/vim-protodef.git
+[submodule "sources_non_forked/YCM-generator"]
+	path = sources_non_forked/YCM-generator
+	url = https://github.com/rdnetto/YCM-Generator.git
