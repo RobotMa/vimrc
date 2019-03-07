@@ -32,3 +32,4 @@ let g:ycm_cache_omnifunc=0
 
 inoremap <leader>; <C-x><C-o>
 let g:disable_protodef_sorting=1
+cnoremap w!! w !sudo tee %
