@@ -205,9 +205,10 @@ endfunction
 
 function! go#config#DebugWindows() abort
   return get(g:, 'go_debug_windows', {
-            \ 'stack': 'leftabove 20vnew',
-            \ 'out':   'botright 10new',
             \ 'vars':  'leftabove 30vnew',
+            \ 'stack': 'leftabove 20new',
+            \ 'goroutines': 'botright 10new',
+            \ 'out':        'botright 5new',
             \ }
          \ )
 
@@ -224,7 +225,7 @@ function! go#config#DebugCommands() abort
 endfunction
 
 function! go#config#DebugLogOutput() abort
-  return get(g:, 'go_debug_log_output', 'debugger, rpc')
+  return get(g:, 'go_debug_log_output', 'debugger,rpc')
 endfunction
 
 function! go#config#LspLog() abort
@@ -258,7 +259,7 @@ function! go#config#SetTemplateAutocreate(value) abort
 endfunction
 
 function! go#config#MetalinterCommand() abort
-  return get(g:, "go_metalinter_command", "gometalinter")
+  return get(g:, "go_metalinter_command", "golangci-lint")
 endfunction
 
 function! go#config#MetalinterAutosaveEnabled() abort
@@ -477,6 +478,11 @@ endfunction
 
 function! go#config#CodeCompletionEnabled() abort
   return get(g:, "go_code_completion_enabled", 1)
+endfunction
+
+function! go#config#Updatetime() abort
+  let go_updatetime = get(g:, 'go_updatetime', 800)
+  return go_updatetime == 0 ? &updatetime : go_updatetime
 endfunction
 
 " Set the default value. A value of "1" is a shortcut for this, for
