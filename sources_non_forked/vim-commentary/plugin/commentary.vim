@@ -9,8 +9,8 @@ endif
 let g:loaded_commentary = 1
 
 function! s:surroundings() abort
-  return split(get(b:, 'commentary_format', substitute(substitute(
-        \ &commentstring, '\S\zs%s',' %s','') ,'%s\ze\S', '%s ', '')), '%s', 1)
+  return split(get(b:, 'commentary_format', substitute(substitute(substitute(
+        \ &commentstring, '^$', '%s', ''), '\S\zs%s',' %s', '') ,'%s\ze\S', '%s ', '')), '%s', 1)
 endfunction
 
 function! s:strip_white_space(l,r,line) abort
@@ -44,17 +44,23 @@ function! s:go(...) abort
     endif
   endfor
 
+  if get(b:, 'commentary_startofline')
+    let indent = '^'
+  else
+    let indent = '^\s*'
+  endif
+
   for lnum in range(lnum1,lnum2)
     let line = getline(lnum)
     if strlen(r) > 2 && l.r !~# '\\'
       let line = substitute(line,
-            \'\M'.r[0:-2].'\zs\d\*\ze'.r[-1:-1].'\|'.l[0].'\zs\d\*\ze'.l[1:-1],
+            \'\M' . substitute(l, '\ze\S\s*$', '\\zs\\d\\*\\ze', '') . '\|' . substitute(r, '\S\zs', '\\zs\\d\\*\\ze', ''),
             \'\=substitute(submatch(0)+1-uncomment,"^0$\\|^-\\d*$","","")','g')
     endif
     if uncomment
       let line = substitute(line,'\S.*\s\@<!','\=submatch(0)[strlen(l):-strlen(r)-1]','')
     else
-      let line = substitute(line,'^\%('.matchstr(getline(lnum1),'^\s*').'\|\s*\)\zs.*\S\@<=','\=l.submatch(0).r','')
+      let line = substitute(line,'^\%('.matchstr(getline(lnum1),indent).'\|\s*\)\zs.*\S\@<=','\=l.submatch(0).r','')
     endif
     call setline(lnum,line)
   endfor
@@ -93,7 +99,7 @@ command! -range -bar Commentary call s:go(<line1>,<line2>)
 xnoremap <expr>   <Plug>Commentary     <SID>go()
 nnoremap <expr>   <Plug>Commentary     <SID>go()
 nnoremap <expr>   <Plug>CommentaryLine <SID>go() . '_'
-onoremap <silent> <Plug>Commentary        :<C-U>call <SID>textobject(0)<CR>
+onoremap <silent> <Plug>Commentary        :<C-U>call <SID>textobject(get(v:, 'operator', '') ==# 'c')<CR>
 nnoremap <silent> <Plug>ChangeCommentary c:<C-U>call <SID>textobject(1)<CR>
 nmap <silent> <Plug>CommentaryUndo :echoerr "Change your <Plug>CommentaryUndo map to <Plug>Commentary<Plug>Commentary"<CR>
 
@@ -102,7 +108,7 @@ if !hasmapto('<Plug>Commentary') || maparg('gc','n') ==# ''
   nmap gc  <Plug>Commentary
   omap gc  <Plug>Commentary
   nmap gcc <Plug>CommentaryLine
-  if maparg('c','n') ==# ''
+  if maparg('c','n') ==# '' && !exists('v:operator')
     nmap cgc <Plug>ChangeCommentary
   endif
   nmap gcu <Plug>Commentary<Plug>Commentary
