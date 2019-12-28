@@ -16,7 +16,7 @@ source $1/my_configs.vim
 catch
 endtry"
 
-if [ $2 == "--all" ]; then
+if [[ $2 == "--all" ]]; then
     USERS=($(ls -l /home | awk '{if(NR>1)print $9}'))
     for user in ${USERS[*]}; do
         homepath=$(eval echo "~$user")
