@@ -60,6 +60,7 @@ comfortable-motion.vim https://github.com/yuttie/comfortable-motion.vim
 vim-tmux-navigator https://github.com/christoomey/vim-tmux-navigator
 ultisnips https://github.com/SirVer/ultisnips
 vimwiki https://github.com/vimwiki/vimwiki
+fzf.vim https://github.com/junegunn/fzf.vim
 """.strip()
 
 GITHUB_ZIP = '%s/archive/master.zip'
