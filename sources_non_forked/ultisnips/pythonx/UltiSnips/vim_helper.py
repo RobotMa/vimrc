@@ -7,6 +7,7 @@ from contextlib import contextmanager
 import os
 import platform
 
+from UltiSnips.snippet.source.file.common import normalize_file_path
 from UltiSnips.compatibility import col2byte, byte2col
 from UltiSnips.position import Position
 from vim import error  # pylint:disable=import-error,unused-import
@@ -220,10 +221,14 @@ def get_dot_vim():
     if vim.eval("has('nvim')") == "1":
         xdg_home_config = vim.eval("$XDG_CONFIG_HOME") or os.path.join(home, ".config")
         candidates.append(os.path.join(xdg_home_config, "nvim"))
+
     candidates.append(os.path.join(home, ".vim"))
+
+    my_vimrc = os.path.expandvars(os.environ["MYVIMRC"])
+    candidates.append(normalize_file_path(os.path.dirname(my_vimrc)))
     for candidate in candidates:
         if os.path.isdir(candidate):
-            return os.path.realpath(candidate)
+            return normalize_file_path(candidate)
     raise RuntimeError(
         "Unable to find user configuration directory. I tried '%s'." % candidates
     )
