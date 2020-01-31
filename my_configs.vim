@@ -21,6 +21,6 @@ let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_experimental_template_highlight = 1
 
-set rtp+=$HOME/.fzf/bin/fzf
+set rtp+=$HOME/.fzf
 
 nmap <leader>tag :TagbarToggle<CR>
