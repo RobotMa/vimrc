@@ -1,6 +1,14 @@
 ## unplanned
 
 BACKWARDS INCOMPATIBILITIES:
+
+IMPROVEMENTS:
+
+BUG FIXES:
+
+## v1.22 - (January 30, 2020)
+
+BACKWARDS INCOMPATIBILITIES:
 * Drop support for Vim 7.4. The minimum required version of Vim is now 8.0.1453.
   [[GH-2495]](https://github.com/fatih/vim-go/pull/2495)
   [[GH-2497]](https://github.com/fatih/vim-go/pull/2497)
@@ -88,6 +96,8 @@ IMPROVEMENTS:
   [[GH-2652]](https://github.com/fatih/vim-go/pull/2652)
   [[GH-2662]](https://github.com/fatih/vim-go/pull/2662)
   [[GH-2663]](https://github.com/fatih/vim-go/pull/2663)
+  [[GH-2672]](https://github.com/fatih/vim-go/pull/2672)
+  [[GH-2678]](https://github.com/fatih/vim-go/pull/2678)
 
 
 BUG FIXES:

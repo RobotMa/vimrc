@@ -59,6 +59,7 @@ vim-markdown https://github.com/plasticboy/vim-markdown
 comfortable-motion.vim https://github.com/yuttie/comfortable-motion.vim
 vim-wiki https://github.com/vimwiki
 limelight.vim https://github.com/junegunn/limelight.vim
+fzf.vim https://github.com/junegunn/fzf.vim
 """.strip()
 
 GITHUB_ZIP = '%s/archive/master.zip'
