@@ -55,3 +55,11 @@ let g:vimwiki_list = [{'path': '$HOME/codingConfig/Diary'}]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:cpp_class_scope_highlight = 2
 let g:cpp_experimental_simple_template_highlight = 1
+ 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-markdown-preview 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" This is to resolve the key map conflict with vimwiki where 
+" they both use '<C-p>'
+let vim_markdown_preview_hotkey='<C-k>'
+let vim_markdown_preview_browser='Google Chrome'
