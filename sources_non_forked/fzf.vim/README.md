@@ -41,24 +41,27 @@ repository][fzf-main], which means you need to **set up both "fzf" and
 ### Using [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```vim
-Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 ```
 
-- Make sure to use Vim 7.4 or above
-- The `do` option makes sure that you have the latest version of fzf binary
-- If you have already installed fzf using [Homebrew](https://brew.sh/), and do
-  not wish to have another copy on your system, replace the first line with
-  `Plug '/usr/local/opt/fzf'`
-- If you want to set up fzf globally on your system only using vim-plug, you
-  can write `Plug 'junegunn/fzf', { 'do': './install --all' }`
+`fzf#install()` makes sure that you have the latest binary, but it's optional,
+so you can omit it if you use a plugin manager that doesn't support hooks.
+
+### Dependencies
+
+- [fzf][fzf-main] 0.22.0 or above
+- For syntax-highlighted preview, install [bat](https://github.com/sharkdp/bat)
+- `Ag` requires [The Silver Searcher (ag)][ag]
+- `Rg` requires [ripgrep (rg)][rg]
+- `Tags` and `Helptags` require Perl
 
 Commands
 --------
 
 | Command           | List                                                                    |
 | ---               | ---                                                                     |
-| `:Files [PATH]`   | Files (similar to `:FZF`)                                               |
+| `:Files [PATH]`   | Files (runs `$FZF_DEFAULT_COMMAND` if defined)                          |
 | `:GFiles [OPTS]`  | Git files (`git ls-files`)                                              |
 | `:GFiles?`        | Git files (`git status`)                                                |
 | `:Buffers`        | Open buffers                                                            |
@@ -104,6 +107,20 @@ Customization
 Every command in fzf.vim internally calls `fzf#wrap` function of the main
 repository which supports a set of global option variables. So please read
 through [README-VIM][README-VIM] to learn more about them.
+
+#### Preview window
+
+If the width of the screen is wider than 120 columns, some commands will show
+the preview window on the right. You can customize the behavior with
+`g:fzf_preview_window`. Here are some examples:
+
+```vim
+" Empty value to disable preview window altogether
+let g:fzf_preview_window = ''
+
+" Always enable preview window on the right with 60% width
+let g:fzf_preview_window = 'right:60%'
+```
 
 ### Command-local options
 
@@ -219,7 +236,7 @@ predefined `Ag` or `Rg` using `fzf#vim#grep`.
 ```vim
 command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
-  \   'git grep --line-number '.shellescape(<q-args>), 0,
+  \   'git grep --line-number -- '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 ```
 
@@ -233,7 +250,7 @@ the spec argument to `fzf#vim#preview`.
 ```vim
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
 ```
 
@@ -258,7 +275,7 @@ a "fuzzy finder".
 
 ```vim
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
@@ -280,11 +297,8 @@ Mappings
 | `<plug>(fzf-complete-word)`        | `cat /usr/share/dict/words`               |
 | `<plug>(fzf-complete-path)`        | Path completion using `find` (file + dir) |
 | `<plug>(fzf-complete-file)`        | File completion using `find`              |
-| `<plug>(fzf-complete-file-ag)`     | File completion using `ag`                |
 | `<plug>(fzf-complete-line)`        | Line completion (all open buffers)        |
 | `<plug>(fzf-complete-buffer-line)` | Line completion (current buffer only)     |
-
-### Usage
 
 ```vim
 " Mapping selecting mappings
@@ -295,14 +309,30 @@ omap <leader><tab> <plug>(fzf-maps-o)
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
-
-" Advanced customization using Vim function
-inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 ```
 
-### Completion helper
+Completion functions
+--------------------
+
+| Function                                 | Description                           |
+| ---                                      | ---                                   |
+| `fzf#vim#complete#path(command, [spec])` | Path completion                       |
+| `fzf#vim#complete#word([spec])`          | Word completion                       |
+| `fzf#vim#complete#line([spec])`          | Line completion (all open buffers)    |
+| `fzf#vim#complete#buffer_line([spec])`   | Line completion (current buffer only) |
+
+```vim
+" Path completion with custom source command
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
+
+" Word completion with custom spec with popup layout option
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
+```
+
+Custom completion
+-----------------
 
 `fzf#vim#complete` is a helper function for creating custom fuzzy completion
 using fzf. If the first parameter is a command string or a Vim list, it will
@@ -335,7 +365,7 @@ inoremap <expr> <c-x><c-l> fzf#vim#complete(fzf#wrap({
   \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
 ```
 
-#### Reducer example
+### Reducer example
 
 ```vim
 function! s:make_sentence(lines)
